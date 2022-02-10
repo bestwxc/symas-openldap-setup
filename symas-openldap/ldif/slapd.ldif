@@ -1,0 +1,184 @@
+#
+# See slapd-config(5) for details on configuration options.
+# This file should NOT be world readable.
+#
+dn: cn=config
+objectClass: olcGlobal
+cn: config
+#
+#
+# Define global ACLs to disable default read access.
+#
+olcArgsFile: /var/symas/run/slapd.args
+olcPidFile: /var/symas/run/slapd.pid
+#
+# Do not enable referrals until AFTER you have a working directory
+# service AND an understanding of referrals.
+#olcReferral:	ldap://root.openldap.org
+#
+# Sample security restrictions
+#	Require integrity protection (prevent hijacking)
+#	Require 112-bit (3DES or better) encryption for updates
+#	Require 64-bit encryption for simple bind
+#olcSecurity: ssf=1 update_ssf=112 simple_bind=64
+
+
+#
+# Load dynamic backend modules:
+#
+dn: cn=module,cn=config
+objectClass: olcModuleList
+cn: module
+olcModulepath:	/opt/symas/lib/openldap
+olcModuleload: accesslog.la
+olcModuleload: auditlog.la
+#olcModuleload: back_dnssrv.la
+olcModuleload: back_ldap.la
+olcModuleload: back_mdb.la
+#olcModuleload: back_meta.la
+#olcModuleload: back_null.la
+#olcModuleload: back_passwd.la
+#olcModuleload: back_relay.la
+#olcModuleload: back_shell.la
+#olcModuleload: back_sock.la
+#olcModuleload: collect.la
+olcModuleload: constraint.la
+olcModuleload: dds.la
+#olcModuleload: deref.la
+#olcModuleload: dyngroup.la
+olcModuleload: dynlist.la
+olcModuleload: memberof.la
+#olcModuleload: pcache.la
+#olcModuleload: ppolicy.la
+olcModuleload: refint.la
+#olcModuleload: retcode.la
+#olcModuleload: rwm.la
+#olcModuleload: seqmod.la
+#olcModuleload: smbk5pwd.la
+#olcModuleload: sssvlv.la
+#olcModuleload: syncprov.la
+#olcModuleload: translucent.la
+olcModuleload: unique.la
+olcModuleload: valsort.la
+
+
+dn: cn=schema,cn=config
+objectClass: olcSchemaConfig
+cn: schema
+
+include: file:///opt/symas/etc/openldap/schema/core.ldif
+include: file:///opt/symas/etc/openldap/schema/cosine.ldif
+include: file:///root/symas-openldap/ldif/dgzq.ldif
+
+# Frontend settings
+#
+dn: olcDatabase=frontend,cn=config
+objectClass: olcDatabaseConfig
+objectClass: olcFrontendConfig
+olcDatabase: frontend
+#
+# Sample global access control policy:
+#	Root DSE: allow anyone to read it
+#	Subschema (sub)entry DSE: allow anyone to read it
+#	Other DSEs:
+#		Allow self write access
+#		Allow authenticated users read access
+#		Allow anonymous users to authenticate
+#
+#olcAccess: to dn.base="" by * read
+#olcAccess: to dn.base="cn=Subschema" by * read
+#olcAccess: to *
+#	by self write
+#	by users read
+#	by anonymous auth
+#组织
+olcAccess: to dn.subtree="ou=People,dc=dgzq,dc=com,dc=cn" by dn.children="ou=SysUserGroup,dc=dgzq,dc=com,dc=cn" manage
+    by self write
+    by dn.children="ou=SyncUserGroup,dc=dgzq,dc=com,dc=cn" read
+    by users read
+    by anonymous auth
+#角色
+olcAccess: to dn.subtree="ou=Group,dc=dgzq,dc=com,dc=cn" by dn.children="ou=SysUserGroup,dc=dgzq,dc=com,dc=cn" manage
+    by dn.children="ou=SyncUserGroup,dc=dgzq,dc=com,dc=cn" read
+#管理用户
+olcAccess: to dn.subtree="ou=SysUserGroup,dc=dgzq,dc=com,dc=cn" by dn.children="ou=SysUserGroup,dc=dgzq,dc=com,dc=cn" manage
+    by anonymous auth
+#同步用户
+olcAccess: to dn.subtree="ou=SyncUserGroup,dc=dgzq,dc=com,dc=cn" by dn.children="ou=SysUserGroup,dc=dgzq,dc=com,dc=cn" manage
+    by anonymous auth
+#其他包括根节点 本机root用户和系统管理员可以对所有操作进行操作
+olcAccess: to * by dn.base="gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth" manage
+    by dn.children="ou=SysUserGroup,dc=dgzq,dc=com,dc=cn" manage
+	by users read by anonymous auth
+
+#
+# if no access controls are present, the default policy
+# allows anyone and everyone to read anything but restricts
+# updates to rootdn.  (e.g., "access to * by * read")
+#
+# rootdn can always read and write EVERYTHING!
+#
+
+#######################################################################
+# LMDB database definitions
+#######################################################################
+#
+dn: olcDatabase=mdb,cn=config
+objectClass: olcDatabaseConfig
+objectClass: olcMdbConfig
+olcDatabase: mdb
+olcDbMaxSize: 1073741824
+olcSuffix: dc=dgzq,dc=com,dc=cn
+olcRootDN: cn=suser,ou=SysUserGroup,dc=dgzq,dc=com,dc=cn
+# Cleartext passwords, especially for the rootdn, should
+# be avoided.  See slappasswd(8) and slapd-config(5) for details.
+# Use of strong authentication encouraged.
+olcRootPW: {SSHA}nNhPqm8Y7k+mcL/++BF0w4fnzdTALhEj
+# The database directory MUST exist prior to running slapd AND 
+# should only be accessible by the slapd and slap tools.
+# Mode 700 recommended.
+olcDbDirectory:	/var/symas/openldap-data
+# Indices to maintain
+olcDbIndex: objectClass eq
+
+dn: olcDatabase=monitor,cn=config
+objectClass: olcDatabaseConfig
+olcDatabase: monitor
+olcRootDN: cn=config
+olcMonitoring: FALSE
+olcAccess: to * by dn.base="gidNumber=0+uidNumber=0,cn=peercred,cn=external,c
+ n=auth" read by dn.base="cn=suser,ou=SysUserGroup,dc=dgzq,dc=com,dc=cn" read by * none
+
+dn: olcOverlay=memberof,olcDatabase={1}mdb,cn=config
+objectClass: olcConfig
+objectClass: olcMemberOf
+objectClass: olcOverlayConfig
+objectClass: top
+olcOverlay: memberof
+olcMemberOfDangling: ignore
+olcMemberOfRefInt: TRUE
+olcMemberOfGroupOC: dgzqOrganizationalRole
+olcMemberOfMemberAD: member
+olcMemberOfMemberOfAD: memberOf
+
+dn: olcOverlay=refint,olcDatabase={1}mdb,cn=config
+objectClass: olcConfig
+objectClass: olcOverlayConfig
+objectClass: olcRefintConfig
+objectClass: top
+olcOverlay: refint
+olcRefintAttribute: memberOf uniqueMember manager owner
+olcRefintNothing: cn=suser,ou=SysUserGroup,dc=dgzq,dc=com,dc=cn
+
+#dn: olcOverlay=accesslog,olcDatabase={1}mdb,cn=config
+#objectClass: olcConfig
+#objectClass: olcOverlayConfig
+#objectClass: olcAccessLogConfig
+#olcOverlay: accesslog
+#olcAccessLogDB: cn=accesslog
+
+dn: olcOverlay=auditlog,olcDatabase={1}mdb,cn=config
+objectClass: olcOverlayConfig
+objectClass: olcAuditLogConfig
+olcOverlay: auditlog
+olcAuditlogFile: /tmp/auditlog.ldif

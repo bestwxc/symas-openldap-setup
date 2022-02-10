@@ -1,0 +1,66 @@
+dn: dc=dgzq,dc=com,dc=cn
+objectClass: top
+objectClass: dcObject
+objectClass: organization
+o: Dgzq Company
+dc: dgzq
+
+dn: ou=People,dc=dgzq,dc=com,dc=cn
+objectClass: dgzqOrganizationalUnit
+ou: People
+deptName: 组织人员
+enabled: 1
+isBranch: 0
+isSubCompany: 0
+
+dn: ou=Group,dc=dgzq,dc=com,dc=cn
+objectClass: dgzqOrganizationalUnit
+ou: Group
+deptName: 系统角色
+enabled: 1
+isBranch: 0
+isSubCompany: 0
+
+dn: ou=SysUserGroup,dc=dgzq,dc=com,dc=cn
+objectClass: dgzqOrganizationalUnit
+ou: SysUserGroup
+deptName: 管理账户
+enabled: 1
+isBranch: 0
+isSubCompany: 0
+
+dn: ou=SyncUserGroup,dc=dgzq,dc=com,dc=cn
+objectClass: dgzqOrganizationalUnit
+ou: SyncUserGroup
+deptName: 同步账户
+enabled: 1
+isBranch: 0
+isSubCompany: 0
+
+dn: cn=suser,ou=SysUserGroup,dc=dgzq,dc=com,dc=cn
+objectClass: dgzqSysUser
+cn: suser
+sn: 超级管理员
+enabled: 1
+activeState: 1
+
+dn: cn=leagsoft,ou=SyncUserGroup,dc=dgzq,dc=com,dc=cn
+objectClass: dgzqSysUser
+cn: leagsoft
+sn: Leagsoft互联网收敛项目同步用户
+enabled: 1
+activeState: 1
+
+dn: cn=SuperUserRole,ou=Group,dc=dgzq,dc=com,dc=cn
+objectClass: dgzqOrganizationalRole
+cn: SuperUserRole
+description: 超管角色
+member: cn=suser,ou=SysUserGroup,dc=dgzq,dc=com,dc=cn
+
+dn: cn=SyncUserRole,ou=Group,dc=dgzq,dc=com,dc=cn
+objectClass: dgzqOrganizationalRole
+objectClass: top
+cn: SyncUserRole
+description: 同步用户角色
+member: cn=leagsoft,ou=SyncUserGroup,dc=dgzq,dc=com,dc=cn
+

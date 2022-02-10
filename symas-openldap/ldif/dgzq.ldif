@@ -1,0 +1,176 @@
+dn: cn=dgzq,cn=schema,cn=config
+objectClass: olcSchemaConfig
+cn: dgzq
+olcAttributeTypes: ( 1.1.2.1.1 NAME 'isBranch'
+  DESC 'isBranch'
+  EQUALITY caseIgnoreMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  SINGLE-VALUE )
+olcAttributeTypes: ( 1.1.2.1.2 NAME 'isSubCompany'
+  DESC 'isSubCompany'
+  EQUALITY caseIgnoreMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  SINGLE-VALUE )
+olcAttributeTypes: ( 1.1.2.1.3 NAME 'enabled'
+  DESC 'enabled'
+  EQUALITY caseIgnoreMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  SINGLE-VALUE )
+olcAttributeTypes: ( 1.1.2.1.4 NAME 'branchNo'
+  DESC 'branchNo'
+  EQUALITY caseIgnoreMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  SINGLE-VALUE )
+olcAttributeTypes: ( 1.1.2.1.5 NAME 'deptId'
+  DESC 'deptId'
+  EQUALITY caseIgnoreMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  SINGLE-VALUE )
+olcAttributeTypes: ( 1.1.2.1.6 NAME 'deptName'
+  DESC 'deptName'
+  EQUALITY caseIgnoreMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  SINGLE-VALUE )
+olcAttributeTypes: ( 1.1.2.1.7 NAME 'deptLevel'
+  DESC 'deptLevel'
+  EQUALITY caseIgnoreMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  SINGLE-VALUE )
+olcAttributeTypes: ( 1.1.2.1.8 NAME 'headDeptNo'
+  DESC 'headDeptNo'
+  EQUALITY caseIgnoreMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  SINGLE-VALUE )
+olcAttributeTypes: ( 1.1.2.1.9 NAME 'headDeptName'
+  DESC 'headDeptName'
+  EQUALITY caseIgnoreMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  SINGLE-VALUE )
+olcAttributeTypes: ( 1.1.2.1.10 NAME 'parentDeptNo'
+  DESC 'parentDeptNo'
+  EQUALITY caseIgnoreMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  SINGLE-VALUE )
+olcAttributeTypes: ( 1.1.2.1.11 NAME 'parentDeptName'
+  DESC 'parentDeptName'
+  EQUALITY caseIgnoreMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  SINGLE-VALUE )
+olcAttributeTypes: ( 1.1.2.1.12 NAME 'deptNoPath'
+  DESC 'deptNoPath'
+  EQUALITY caseIgnoreMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  SINGLE-VALUE ) 
+olcAttributeTypes: ( 1.1.2.1.13 NAME 'deptNamePath'
+  DESC 'deptNamePath'
+  EQUALITY caseIgnoreMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  SINGLE-VALUE )
+olcAttributeTypes: ( 1.1.2.1.14 NAME 'ftspUserId'
+  DESC 'ftspUserId'
+  EQUALITY caseIgnoreMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  SINGLE-VALUE )
+olcAttributeTypes: ( 1.1.2.1.15 NAME 'ftspLoginId'
+  DESC 'ftspLoginId'
+  EQUALITY caseIgnoreMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  SINGLE-VALUE )
+olcAttributeTypes: ( 1.1.2.1.16 NAME 'ftspNickName'
+  DESC 'ftspNickName'
+  EQUALITY caseIgnoreMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  SINGLE-VALUE )
+olcAttributeTypes: ( 1.1.2.1.17 NAME 'oaLoginName'
+  DESC 'oaLoginName'
+  EQUALITY caseIgnoreMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  SINGLE-VALUE )
+olcAttributeTypes: ( 1.1.2.1.18 NAME 'hrmEmpId'
+  DESC 'hrmEmpId'
+  EQUALITY caseIgnoreMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  SINGLE-VALUE )
+olcAttributeTypes: ( 1.1.2.1.19 NAME 'hrmEmpNo'
+  DESC 'hrmEmpNo'
+  EQUALITY caseIgnoreMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  SINGLE-VALUE )
+olcAttributeTypes: ( 1.1.2.1.20 NAME 'hrmEmpName'
+  DESC 'hrmEmpName'
+  EQUALITY caseIgnoreMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  SINGLE-VALUE )
+olcAttributeTypes: ( 1.1.2.1.21 NAME 'deptNo'
+  DESC 'deptNo'
+  EQUALITY caseIgnoreMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  SINGLE-VALUE )
+olcAttributeTypes: ( 1.1.2.1.22 NAME 'crmUserId'
+  DESC 'crmUserId'
+  EQUALITY caseIgnoreMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  SINGLE-VALUE )
+olcAttributeTypes: ( 1.1.2.1.23 NAME 'hsufOperatorNo'
+  DESC 'hsufOperatorNo'
+  EQUALITY caseIgnoreMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  SINGLE-VALUE )
+olcAttributeTypes: ( 1.1.2.1.24 NAME 'bopOperatorNo'
+  DESC 'bopOperatorNo'
+  EQUALITY caseIgnoreMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  SINGLE-VALUE )
+olcAttributeTypes: ( 1.1.2.1.25 NAME 'idNo'
+  DESC 'idNo'
+  EQUALITY caseIgnoreMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  SINGLE-VALUE )
+olcAttributeTypes: ( 1.1.2.1.26 NAME 'activeState'
+  DESC 'activeState'
+  EQUALITY caseIgnoreMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+  SINGLE-VALUE )
+olcObjectClasses: ( 1.1.2.2.1 NAME 'dgzqOrganizationalUnit'
+  DESC 'dgzqOrganizationalUnit'
+  SUP organizationalUnit
+  MUST (isBranch $ isSubCompany $ enabled)
+  MAY ( deptId $ deptName $ deptLevel $ headDeptNo $ headDeptName $ parentDeptNo $ parentDeptName $ deptNoPath $ deptNamePath $ branchNo ))
+olcObjectClasses: ( 1.1.2.2.2 NAME 'dgzqOrganizationalRole'
+  DESC 'dgzqOrganizationalRole'
+  SUP organizationalRole
+  MAY member)
+olcObjectClasses: ( 1.1.2.2.3 NAME 'dgzqOrganizationalPerson'
+  DESC 'dgzqOrganizationalPerson'
+  SUP organizationalPerson
+  MUST ( enabled $ activeState )
+  MAY ( uid $ ftspUserId $ ftspLoginId $ ftspNickName $ oaLoginName $ hrmEmpId $ hrmEmpNo $ hrmEmpName $ deptNo $ crmUserId $ hsufOperatorNo $ bopOperatorNo $ idNo $ branchNo $ mobile $ email ))
+olcObjectClasses: ( 1.1.2.2.4 NAME 'dgzqSysUser'
+  DESC 'dgzqSysUser'
+  SUP dgzqOrganizationalPerson )
